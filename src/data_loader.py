@@ -9,7 +9,7 @@ from torchvision.datasets import ImageFolder
 
 # ------------------- Data Transformation and preprocessing ---------------------
 
-transform = transforms.Compose([
+train_transform = transforms.Compose([
     transforms.Resize((256,256)),
 
     transforms.RandomHorizontalFlip(),
@@ -18,16 +18,26 @@ transform = transforms.Compose([
 
     transforms.ColorJitter(0.1,0.2,0.1,0.05),
 
+    transforms.ToTensor(),
+
+    transforms.Normalize((0.5,0.5,0.5), (0.5,0.5,0.5))
+])
+
+
+# Validation/Testing only includes resizing, ToTensor, and Normalize
+eval_transform = transforms.Compose([
+    transforms.Resize((256,256)),
+    transforms.ToTensor(),              #
     transforms.Normalize((0.5,0.5,0.5), (0.5,0.5,0.5))
 ])
 
 # Datasets
 
-train_dataset = ImageFolder('./data/processed/Training',transform=transform)
+train_dataset = ImageFolder('./data/processed/Training',transform=train_transform)
 
-test_dataset = ImageFolder('./data/processed/Testing',transform=transform)
+test_dataset = ImageFolder('./data/processed/Testing',transform=eval_transform)
 
-val_dataset = ImageFolder('./data/Validation',transform=transform)
+val_dataset = ImageFolder('./data/processed/Validation',transform=eval_transform)
 
 # Loaders
 

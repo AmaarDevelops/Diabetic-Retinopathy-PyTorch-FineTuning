@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diabetic Retinopathy Diagnosis</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Diabetic Retinopathy Classifier</h1>
+        <p>Upload a retinal fundus image for diagnosis.</p>
+
+        <form id="upload-form" enctype="multipart/form-data">
+            <input type="file" name="file" id="file-input" accept="image/*" required>
+            <button type="submit" id="submit-btn">Diagnose Image</button>
+        </form>
+
+        <div class="result-box" id="result-box">
+            <h2>Diagnosis Result</h2>
+            <p id="prediction-text">Upload an image to get a prediction.</p>
+        </div>
+
+        <p class="disclaimer">Disclaimer: This tool is for informational and educational purposes only and is not a substitute for professional medical advice.</p>
+    </div>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
